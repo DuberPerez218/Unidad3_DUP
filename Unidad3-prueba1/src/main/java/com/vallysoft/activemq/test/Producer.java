@@ -17,7 +17,7 @@ public class Producer {
 private static String url = ActiveMQConnection.DEFAULT_BROKER_URL;
 // default broker URL is : tcp://localhost:61616"
 
-private static String subject = "VALLYSOFTQ"; //Queue Name
+private static String subject = "LDS"; //Queue Name
 // You can create any/many queue names as per your requirement.
 
 public static void main(String[] args) throws JMSException {
@@ -40,8 +40,11 @@ MessageProducer producer = session.createProducer(destination);
 // We will send a small text message saying 'Hello' in Japanese
 TextMessage message = session.createTextMessage("Hello welcome come to vallysoft ActiveMQ!");
 // Here we are sending the message!
+for(int i = 1; i <= 100; i ++)
+{
 producer.send(message);
 System.out.println("Sentage '" + message.getText() + "'");
+}
 
 connection.close();
 }
